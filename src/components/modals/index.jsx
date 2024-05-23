@@ -18,7 +18,7 @@ export default function Modal() {
         <Transition appear show={modals.show}>
             <Dialog as="div" className="relative z-50 focus:outline-none" onClose={close}>
                 
-                <div className="fixed inset-0 z-[60] bg-white/20  w-screen overflow-y-auto">
+                <div className="fixed inset-0 z-[60] bg-black/50  w-screen overflow-y-auto">
                     <div className="flex min-h-full items-center justify-center p-4">
                         <TransitionChild
                             enter="ease-out duration-300"
@@ -28,7 +28,7 @@ export default function Modal() {
                             leaveFrom="opacity-100 transform-[scale(100%)]"
                             leaveTo="opacity-0 transform-[scale(95%)]"
                         >
-                            <DialogPanel className="w-full max-w-md rounded-md  bg-primary  p-6 backdrop-blur-2xl">
+                            <DialogPanel className="w-full max-w-full min-h-full h-full rounded-md  bg-primary backdrop-blur-2xl bg-zinc-800  text-white">
 
                                 <modal.element />
                             </DialogPanel>

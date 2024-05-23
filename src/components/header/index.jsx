@@ -12,13 +12,16 @@ import { PiPlugsConnected } from "react-icons/pi";
 import { IoMdSettings } from "react-icons/io";
 import { TbHelpHexagonFilled } from "react-icons/tb";
 import { MdLock } from "react-icons/md";
+import cha from "../../assets/images/cha.png"
+import { useNavigate } from "react-router-dom";
 export default function Header() {
-
+    const navigate = useNavigate();
     const { copied, copyToClipboard } = useCopyToClipboard()
 
     let address = "c7669qi6uJio8xF9qfhoWNTroghgXkm5yA"
     let account_name = "Account 1"
     let [network, setNetwork] = useState("Testnet")
+    const [isConnect, setIsConnect] = useState(false)
 
     const handleChangeNetwork = (data) => {
         setNetwork(data);
@@ -31,7 +34,7 @@ export default function Header() {
     const dropmenulist = [
         {
             title: "Deposit",
-            handleClick: () => console.log("opendeposit-modal"),
+            handleClick: () => createModal("account_details"),
             icon: RiAppsFill
         },
         {
@@ -41,12 +44,12 @@ export default function Header() {
         },
         {
             title: "Support",
-            handleClick: () => console.log("open-github-issiue-page"),
+            handleClick: () => window.open("https://github.com/chavinci-chain/chavinci-extension/issues"),
             icon: TbHelpHexagonFilled
         },
         {
             title: "Settings",
-            handleClick: () => console.log("open-settings-page"),
+            handleClick: () => navigate("/settings"),
             icon: IoMdSettings
         },
         {
@@ -62,7 +65,6 @@ export default function Header() {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             const activeTab = tabs[0];
             const faviconUrl = activeTab.favIconUrl;
-            console.log("Aktif sekmenin favicon URL'si:", faviconUrl);
             setIcon(faviconUrl)
         });
     }, [])
@@ -76,13 +78,13 @@ export default function Header() {
                         className="rounded-full h-8 gap-2 bg-zinc-700 pl-3 pr-4 flex items-center w-auto text-sm font-medium text-white focus:outline-none data-[hover]:bg-black/30 data-[focus]:outline-1 data-[focus]:outline-white"
                     >
                         <div >
-                            <img src="cha.png" alt="Chavinci Network" className="w-3 h-3" />
+                            <img src={cha} alt="Chavinci Network" className="w-4 h-4" />
                         </div>
                         <IoIosArrowDown />
                     </Button>
                 </div>
                 <div className="h-full w-full flex col-span-2 flex-col items-center text-white  text-center ">
-                    <button className="flex w-full items-center justify-center gap-2 text-sm rounded-full hover:bg-zinc-700/70 px-4 py-2">
+                    <button onClick={() => createModal("account_change_modal")} className="flex w-full items-center justify-center gap-2 text-sm rounded-full hover:bg-zinc-700/70 px-4 py-2">
                         <span>
                             {account_name}
                         </span>
@@ -103,18 +105,19 @@ export default function Header() {
                 </div>
                 <div className="h-full flex items-center justify-end gap-4 text-white">
 
-                    <div>
+                    <div className="relative">
                         {icon ?
-                            <img src={icon} alt="" className="h-4 w-4"/>
+                            <img src={icon} alt="" className="h-4 w-4" />
                             :
-                            <TbWorld size={16} />
+                            <TbWorld size={22} />
                         }
-
+                        <div className="h-3 w-3 bg-zinc-800 rounded-full absolute -bottom-1  -right-1  flex justify-center items-center ">
+                            <div className={`h-1.5  w-1.5 rounded-full ${isConnect ? "bg-green-500 " : "bg-zinc-300"} `} />
+                        </div>
                     </div>
 
                     <Menu>
                         <MenuButton className="inline-flex items-center rounded-full p-1 text-sm/6 font-semibold text-white shadow-inner  focus:outline-none data-[hover]:bg-zinc-700/50 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-
                             <BsThreeDotsVertical size={16} />
                         </MenuButton>
                         <Transition

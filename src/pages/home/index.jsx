@@ -2,7 +2,8 @@ import React from "react";
 import { FiSend } from "react-icons/fi";
 import { HiMiniWallet } from "react-icons/hi2";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
-
+import cha from "../../assets/images/cha.png"
+import nonft from "../../assets/images/no-nfts.png"
 const custom_buttons = [
     {
         title: "Send",
@@ -122,9 +123,9 @@ const TokenTab = () => (
                 <li key={index} className="relative rounded-sm gap-4  text-sm/4 transition hover:bg-white/5">
                     <a href="#" className="flex flex-row items-center  py-4 px-6">
                         <div className="mr-4 h-8 w-8 relative items-center flex justify-center rounded-full ">
-                            <img src="cha.png" alt="Chavinci Network" className=" rounded-full blur-[6px]  opacity-50  " />
+                            <img src={cha} alt="Chavinci Network" className=" rounded-full blur-[6px]  opacity-50  " />
                             
-                            <img src="cha.png" alt="Chavinci Network" className="w-[62.5%] h-auto  absolute " />
+                            <img src={cha} alt="Chavinci Network" className="w-[62.5%] h-auto  absolute " />
                         </div>
                         <div className="flex items-center justify-between w-full  text-sm font-semibold text-white">
                             <div className="flex flex-col item-start gap-1" >
@@ -153,7 +154,7 @@ const TokenTab = () => (
 const NFTTab = () => (
     <TabPanel className="flex flex-col items-center text-center justify-center p-12">
         <div className="text-gray-400 flex flex-col items-center ">
-            <img src="no-nfts.png" alt="No NFT " />
+            <img src={nonft} alt="No NFT " />
             <div className="text-lg font-semibold text-center mt-4">
                 <h4>
                     No NFTs yet

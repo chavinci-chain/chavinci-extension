@@ -1,3 +1,4 @@
+import AccountDetails from "../components/modals/account-details";
 import ChangeAccount from "../components/modals/change-account";
 import ChangeNetwork from "../components/modals/change-network";
 
@@ -7,8 +8,12 @@ const modals = [
         element: ChangeNetwork
     },
     {
-        name:"network_account_modal",
+        name:"account_change_modal",
         element: ChangeAccount
+    },
+    {
+        name:"account_details",
+        element: AccountDetails
     },
 ]
 
